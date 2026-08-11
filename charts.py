@@ -1,14 +1,17 @@
 """
 charts.py
 ---------
-Matplotlib chart functions for the US defense dashboard, per user spec
-(matplotlib, not plotly). Used both by pipeline.py (saves static PNGs to
-output/) and by main.py (returns the Figure for st.pyplot() instead of
-saving, via the return_fig=True path on each function).
+Static seaborn chart functions used ONLY by pipeline.py (CLI) to save PNGs
+to output/. The interactive Streamlit app (main.py) does NOT use this
+module -- it uses st_charts.py instead, which renders natively-scaling
+Altair/pandas charts (st.line_chart/bar_chart/altair_chart) rather than
+fixed-size matplotlib images. This module still needs a raster backend
+(seaborn is matplotlib under the hood) because it's writing PNG files to
+disk, which has no scaling concern in the first place.
 
-Every function accepts pre-computed Series/dicts and either saves a PNG or
-returns the Figure, closing the figure in the save path to avoid memory
-leaks when generating many charts in one pipeline run.
+Every function accepts pre-computed Series/dicts and saves a PNG, closing
+the figure after saving to avoid memory leaks when generating many charts
+in one pipeline run.
 """
 
 import os
@@ -17,6 +20,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import numpy as np
+import pandas as pd
+import seaborn as sns
+
+sns.set_theme(style="whitegrid")
 
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 
@@ -29,46 +36,44 @@ def _safe_filename(name):
     return "".join(c if c.isalnum() or c == "-" else "_" for c in name)
 
 
-def _finish(fig, path, return_fig):
-    """Either return the live Figure (Streamlit) or save+close it (pipeline.py)."""
-    if return_fig:
-        return fig
+def _save_and_close(fig, path):
     fig.savefig(path, bbox_inches="tight", dpi=150)
     plt.close(fig)
     print(f"[CHART] Saved: {path}")
-    return None
 
 
-def plot_timeseries_comparison(series_dict, title, y_label, filename_stem, normalize=False, return_fig=False):
+def plot_timeseries_comparison(series_dict, title, y_label, filename_stem, normalize=False):
     """
-    Overlay any number of named Series on one time-series chart -- the
-    generic "comparison chart in time series with menus for each" required
-    by the checklist. Each key in series_dict becomes one line.
+    Overlay any number of named Series on one seaborn line chart.
 
     Args:
         series_dict (dict): {label: pd.Series or None}
-        title (str), y_label (str)
-        filename_stem (str): output filename (without extension) when saved
         normalize (bool): rebase every series to 100 at its first valid value
-        return_fig (bool): True to return the Figure (Streamlit use) instead
-                            of saving a PNG (pipeline.py use)
     """
     ensure_output_dir()
     plottable = {k: s for k, s in series_dict.items() if s is not None and not s.empty}
     if not plottable:
         print(f"[SKIP] {title}: no plottable series")
-        return None
+        return
 
-    fig, ax = plt.subplots(figsize=(12, 6))
+    frames = []
     for label, s in plottable.items():
-        y = s.values
+        # strip tz before stacking into one shared "Date" column -- mixing
+        # tz-aware (stock/index data) and tz-naive (FRED data) dates in one
+        # column makes it an "object" dtype matplotlib/seaborn can't convert
+        if s.index.tz is not None:
+            s = pd.Series(s.values, index=s.index.tz_localize(None))
+        y = s
         if normalize:
             valid = s.dropna()
             if valid.empty or valid.iloc[0] == 0:
                 continue
             y = (s / valid.iloc[0]) * 100
-        ax.plot(s.index, y, label=label, linewidth=1.5)
+        frames.append(pd.DataFrame({"Date": s.index, "Value": y.values, "Series": label}))
+    long_df = pd.concat(frames, ignore_index=True)
 
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sns.lineplot(data=long_df, x="Date", y="Value", hue="Series", ax=ax, linewidth=1.5)
     ax.set_title(title)
     ax.set_xlabel("Date")
     ax.set_ylabel("Indexed to 100 at start" if normalize else y_label)
@@ -77,19 +82,18 @@ def plot_timeseries_comparison(series_dict, title, y_label, filename_stem, norma
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
 
-    out_path = os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}.png")
-    return _finish(fig, out_path, return_fig)
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}.png"))
 
 
-def plot_macro_series(label, series, y_label=None, title=None, return_fig=False):
+def plot_macro_series(label, series, y_label=None, title=None):
     """Standalone time-series chart for one FRED macro series."""
     ensure_output_dir()
     if series is None or series.empty:
         print(f"[SKIP] macro series '{label}': no data available")
-        return None
+        return
 
     fig, ax = plt.subplots(figsize=(12, 5))
-    ax.plot(series.index, series.values, color="teal", linewidth=1.5)
+    sns.lineplot(x=series.index, y=series.values, ax=ax, color="teal", linewidth=1.5)
     ax.set_title(title or label)
     ax.set_xlabel("Date")
     ax.set_ylabel(y_label or "Value")
@@ -97,22 +101,19 @@ def plot_macro_series(label, series, y_label=None, title=None, return_fig=False)
     fig.autofmt_xdate(rotation=45)
     plt.tight_layout()
 
-    out_path = os.path.join(OUTPUT_DIR, f"macro_{_safe_filename(label)}.png")
-    return _finish(fig, out_path, return_fig)
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"macro_{_safe_filename(label)}.png"))
 
 
-def plot_regression(label, result, return_fig=False):
-    """Combined scatter+fit / residual chart for one simple linear regression."""
+def plot_regression(label, result):
+    """Combined scatter+fit (seaborn.regplot) / residual chart for one simple linear regression."""
     ensure_output_dir()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
-    ax1.scatter(result["x_clean"], result["y_clean"], alpha=0.6, color="blue", s=30)
-    order = np.argsort(result["x_clean"])
-    ax1.plot(np.array(result["x_clean"])[order], np.array(result["y_pred"])[order], "r-", linewidth=2)
+    sns.regplot(x=result["x_clean"], y=result["y_clean"], ax=ax1,
+                scatter_kws={"alpha": 0.6, "s": 30}, line_kws={"color": "red"})
     ax1.set_xlabel(result["x_name"])
     ax1.set_ylabel(result["y_name"])
     ax1.set_title("Linear Regression")
-    ax1.grid(True, alpha=0.3)
 
     eq = f"y = {result['slope']:.4g}x + {result['intercept']:.4g}"
     r2 = f"R² = {result['r_squared']:.3f}   n = {result['n']}"
@@ -120,62 +121,82 @@ def plot_regression(label, result, return_fig=False):
               bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8), verticalalignment="top")
 
     residuals = result["y_clean"] - result["y_pred"]
-    ax2.scatter(result["y_pred"], residuals, alpha=0.6, color="green")
+    sns.scatterplot(x=result["y_pred"], y=residuals, ax=ax2, alpha=0.6, color="green")
     ax2.axhline(y=0, color="red", linestyle="--")
     ax2.set_xlabel("Predicted Values")
     ax2.set_ylabel("Residuals")
     ax2.set_title("Residual Plot")
-    ax2.grid(True, alpha=0.3)
 
     fig.suptitle(label)
     plt.tight_layout()
 
-    out_path = os.path.join(OUTPUT_DIR, f"regression_{_safe_filename(label)}.png")
-    return _finish(fig, out_path, return_fig)
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"regression_{_safe_filename(label)}.png"))
 
 
-def plot_multiple_regression(label, result, return_fig=False):
-    """Actual-vs-predicted scatter for a multiple regression fit."""
+def plot_multiple_regression(label, result):
+    """Actual-vs-predicted scatter AND residuals-vs-predicted scatter for a multiple regression fit."""
     ensure_output_dir()
-    fig, ax = plt.subplots(figsize=(7, 6))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
     y_actual = result["y_actual"].values
-    y_pred = result["y_pred"].values
-    ax.scatter(y_actual, y_pred, alpha=0.6, color="blue", s=30)
+    y_pred = np.asarray(result["y_pred"])
+    residuals = y_actual - y_pred
 
+    sns.scatterplot(x=y_actual, y=y_pred, ax=ax1, alpha=0.6, s=30)
     lo, hi = min(y_actual.min(), y_pred.min()), max(y_actual.max(), y_pred.max())
-    ax.plot([lo, hi], [lo, hi], "r--", linewidth=2, label="y = x")
+    ax1.plot([lo, hi], [lo, hi], "r--", linewidth=2, label="y = x")
+    ax1.set_xlabel("Actual")
+    ax1.set_ylabel("Predicted")
+    ax1.set_title("Actual vs Predicted")
+    ax1.legend(loc="upper left", fontsize=8)
 
-    ax.set_xlabel("Actual")
-    ax.set_ylabel("Predicted")
+    sns.scatterplot(x=y_pred, y=residuals, ax=ax2, alpha=0.6, color="green")
+    ax2.axhline(y=0, color="red", linestyle="--")
+    ax2.set_xlabel("Predicted Values")
+    ax2.set_ylabel("Residuals")
+    ax2.set_title("Residual Plot")
+
     r2 = f"R² = {result['r_squared']:.3f}   Adj. R² = {result['adj_r_squared']:.3f}   n = {result['n']}"
-    ax.set_title(f"{label}\n{r2}")
-    ax.legend(loc="upper left", fontsize=8)
-    ax.grid(True, alpha=0.3)
+    fig.suptitle(f"{label}\n{r2}")
     plt.tight_layout()
 
-    out_path = os.path.join(OUTPUT_DIR, f"multiregression_{_safe_filename(label)}.png")
-    return _finish(fig, out_path, return_fig)
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"multiregression_{_safe_filename(label)}.png"))
 
 
-def plot_market_share_bar(labels, values, title, filename_stem, return_fig=False):
-    """Horizontal bar chart of market-cap shares (percent) -- used for the
-    'share of sub industry / share of industry in market cap' statistics."""
+def plot_market_share_bar(labels, values, title, filename_stem):
+    """Horizontal seaborn bar chart of market-cap shares (percent)."""
     ensure_output_dir()
     pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
     if not pairs:
         print(f"[SKIP] {title}: no market-cap share data")
-        return None
+        return
     pairs.sort(key=lambda p: p[1])
     bar_labels, bar_values = zip(*pairs)
 
     fig, ax = plt.subplots(figsize=(9, max(3, 0.4 * len(bar_labels))))
-    ax.barh(bar_labels, bar_values, color="steelblue")
+    sns.barplot(x=list(bar_values), y=list(bar_labels), ax=ax, color="steelblue")
     ax.set_xlabel("Share of Market Cap (%)")
     ax.set_title(title)
     for i, v in enumerate(bar_values):
         ax.text(v, i, f" {v:.1f}%", va="center", fontsize=8)
     plt.tight_layout()
 
-    out_path = os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}.png")
-    return _finish(fig, out_path, return_fig)
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}.png"))
+
+
+def plot_market_share_pie(labels, values, title, filename_stem):
+    """Pie chart of market-cap shares (percent), using a seaborn color palette."""
+    ensure_output_dir()
+    pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
+    if not pairs:
+        print(f"[SKIP] {title}: no market-cap share data")
+        return
+    pie_labels, pie_values = zip(*pairs)
+
+    fig, ax = plt.subplots(figsize=(7, 7))
+    colors = sns.color_palette("pastel", n_colors=len(pie_labels))
+    ax.pie(pie_values, labels=pie_labels, autopct="%1.1f%%", colors=colors, startangle=90)
+    ax.set_title(title)
+    plt.tight_layout()
+
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}_pie.png"))

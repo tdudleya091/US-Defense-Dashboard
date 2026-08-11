@@ -13,7 +13,10 @@ commonly rate-limits shared cloud datacenter IPs even though the same
 fetches complete instantly run locally. A "Try live fetch" button in the
 sidebar opts into a live pull.
 
-All charts use matplotlib (st.pyplot), per user spec -- not plotly.
+All charts are Streamlit-native (st.line_chart/bar_chart/altair_chart via
+st_charts.py) so they scale to the container width -- not static matplotlib
+images. pipeline.py's static PNG output (seaborn, via charts.py) is a
+separate, unrelated code path used only for `python pipeline.py`.
 
 Usage:
     streamlit run main.py
@@ -35,7 +38,7 @@ except Exception:
 import pipeline as MN
 import regression as R
 import frames as F
-import charts as C
+import st_charts as SC
 import tickers as T
 
 st.set_page_config(page_title="US Defense Dashboard", layout="wide")
@@ -139,27 +142,23 @@ with tab_ts:
     if not selected:
         st.info("Pick one or more series above to plot.")
     else:
-        df = F.wide_frame(catalog, selected, freq=freq_map[freq_choice], normalize=False)
-        series_dict = {col: df[col].dropna() for col in df.columns}
-        fig = C.plot_timeseries_comparison(
-            series_dict, title="Series Comparison",
-            y_label="Value (native units)", filename_stem="streamlit_ts",
-            normalize=normalize, return_fig=True,
-        )
-        if fig is None:
-            st.warning("No data available for the selected series.")
-        else:
-            st.pyplot(fig, clear_figure=True)
+        df = F.wide_frame(catalog, selected, freq=freq_map[freq_choice], normalize=normalize)
+        SC.time_series_chart(df)
+        if not df.empty:
             with st.expander("Underlying data"):
-                st.dataframe(df, use_container_width=True)
+                st.dataframe(df, width="stretch")
 
 # --------------------------------------------------------------------------
-# Tab 2: Market-Cap Share -- each company's share of its sub-industry and
-# of the combined industry, plus each sub-industry's share of the industry.
+# Tab 2: Market-Cap Share -- bar or pie, for both a sub-industry's companies
+# and the two sub-industries' share of the combined industry.
 # --------------------------------------------------------------------------
 with tab_share:
     st.subheader("Market-cap share (latest available value)")
-    sub_choice = st.radio("Sub-industry", SUB_INDUSTRIES, horizontal=True)
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        sub_choice = st.radio("Sub-industry", SUB_INDUSTRIES, horizontal=True)
+    with col2:
+        chart_type = st.radio("Chart type", ["Bar", "Pie"], horizontal=True, key="share_chart_type")
 
     share_labels, share_values = [], []
     for name in T.ALL_COMPANIES:
@@ -171,14 +170,11 @@ with tab_share:
             share_labels.append(name)
             share_values.append(entry["series"].dropna().iloc[-1])
 
-    fig = C.plot_market_share_bar(
-        share_labels, share_values, title=f"{sub_choice}: Share of Sub-Industry Market Cap",
-        filename_stem="streamlit_share", return_fig=True,
-    )
-    if fig:
-        st.pyplot(fig, clear_figure=True)
+    st.markdown(f"#### {sub_choice}: Share of Sub-Industry Market Cap")
+    if chart_type == "Bar":
+        SC.bar_chart(pd.Series(share_values, index=share_labels), y_axis_label="Share of Market Cap (%)")
     else:
-        st.info("No market-cap share data available for this sub-industry.")
+        SC.pie_chart(share_labels, share_values)
 
     st.markdown("#### Sub-industry share of combined defense-industry market cap")
     ind_labels, ind_values = [], []
@@ -188,12 +184,12 @@ with tab_share:
         if entry is not None and not entry["series"].empty:
             ind_labels.append(sub)
             ind_values.append(entry["series"].dropna().iloc[-1])
-    fig2 = C.plot_market_share_bar(
-        ind_labels, ind_values, title="Sub-Industry Share of Combined Industry Market Cap",
-        filename_stem="streamlit_share_industry", return_fig=True,
-    )
-    if fig2:
-        st.pyplot(fig2, clear_figure=True)
+
+    chart_type_industry = st.radio("Chart type", ["Bar", "Pie"], horizontal=True, key="share_chart_type_industry")
+    if chart_type_industry == "Bar":
+        SC.bar_chart(pd.Series(ind_values, index=ind_labels), y_axis_label="Share of Market Cap (%)")
+    else:
+        SC.pie_chart(ind_labels, ind_values)
 
 # --------------------------------------------------------------------------
 # Tab 3: Linear Regression -- Y is always a company/sub-industry/industry
@@ -240,7 +236,7 @@ with tab_reg:
 
             st.dataframe(
                 summary_df.style.format({"Slope": "{:.4g}", "Intercept": "{:.4g}", "R²": "{:.3f}", "P-value": "{:.3g}"}),
-                use_container_width=True,
+                width="stretch",
             )
 
             st.markdown("#### Scatter plots with fitted line")
@@ -248,12 +244,14 @@ with tab_reg:
             cols = st.columns(n_cols)
             for i, (x_label, r) in enumerate(results):
                 with cols[i % n_cols]:
-                    fig = C.plot_regression(f"{y_label} vs {x_label}", r, return_fig=True)
-                    st.pyplot(fig, clear_figure=True)
+                    SC.regression_scatter_chart(r)
+                    residuals = r["y_clean"] - r["y_pred"]
+                    SC.residual_chart(r["y_pred"], residuals, title=f"Residuals: {y_label} vs {x_label}")
 
 # --------------------------------------------------------------------------
 # Tab 4: Multiple Regression -- same sub-industry restriction on FRED
-# factors as the linear-regression tab.
+# factors as the linear-regression tab. Shows actual-vs-predicted AND
+# residuals-vs-predicted.
 # --------------------------------------------------------------------------
 with tab_mreg:
     st.subheader("Multiple regression: one Y against several X variables at once")
@@ -283,9 +281,10 @@ with tab_mreg:
         if result is None:
             st.warning("Insufficient overlapping data points for this combination of variables.")
         else:
-            st.metric("R²", f"{result['r_squared']:.3f}")
-            st.metric("Adjusted R²", f"{result['adj_r_squared']:.3f}")
-            st.caption(f"n = {result['n']}")
+            m1, m2, m3 = st.columns(3)
+            m1.metric("R²", f"{result['r_squared']:.3f}")
+            m2.metric("Adjusted R²", f"{result['adj_r_squared']:.3f}")
+            m3.metric("N", result["n"])
 
             coef_df = pd.DataFrame([
                 {"Variable": name, "Coefficient": coef, "P-value": result["p_values"][name]}
@@ -293,8 +292,15 @@ with tab_mreg:
             ])
             st.dataframe(
                 coef_df.style.format({"Coefficient": "{:.4g}", "P-value": "{:.3g}"}),
-                use_container_width=True,
+                width="stretch",
             )
 
-            fig = C.plot_multiple_regression(f"{y_label_m} ~ {' + '.join(x_labels_m)}", result, return_fig=True)
-            st.pyplot(fig, clear_figure=True)
+            y_actual = result["y_actual"].values
+            y_pred = result["y_pred"].values
+            residuals = y_actual - y_pred
+
+            rc1, rc2 = st.columns(2)
+            with rc1:
+                SC.actual_vs_predicted_chart(y_actual, y_pred, title=f"{y_label_m}: Actual vs Predicted")
+            with rc2:
+                SC.residual_chart(y_pred, residuals, title=f"{y_label_m}: Residuals")

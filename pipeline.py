@@ -221,6 +221,8 @@ def main():
                 values.append(share.dropna().iloc[-1])
         C.plot_market_share_bar(labels, values, title=f"{sub}: Share of Sub-Industry Market Cap (latest)",
                                  filename_stem=f"{sub}_share_of_subindustry")
+        C.plot_market_share_pie(labels, values, title=f"{sub}: Share of Sub-Industry Market Cap (latest)",
+                                 filename_stem=f"{sub}_share_of_subindustry")
 
     industry_labels, industry_values = [], []
     for sub in SUB_INDUSTRIES:
@@ -229,6 +231,9 @@ def main():
             industry_labels.append(sub)
             industry_values.append(share.dropna().iloc[-1])
     C.plot_market_share_bar(industry_labels, industry_values,
+                             title="Sub-Industry Share of Combined Defense-Industry Market Cap (latest)",
+                             filename_stem="industry_subindustry_shares")
+    C.plot_market_share_pie(industry_labels, industry_values,
                              title="Sub-Industry Share of Combined Defense-Industry Market Cap (latest)",
                              filename_stem="industry_subindustry_shares")
 
