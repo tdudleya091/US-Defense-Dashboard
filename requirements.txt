@@ -1,0 +1,10 @@
+pandas
+fredapi
+matplotlib
+yfinance
+streamlit
+numpy
+scipy
+statsmodels
+python-dotenv
+pyarrow

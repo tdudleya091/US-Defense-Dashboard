@@ -1,0 +1,650 @@
+{
+  "built_at": "2026-08-11T21:39+00:00",
+  "series": {
+    "Boeing \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Boeing \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Boeing \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Boeing \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Boeing \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Boeing \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Textron \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Textron \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Textron \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Textron \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Textron \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Textron \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Northrop Grumman \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Northrop Grumman \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Northrop Grumman \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Northrop Grumman \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Northrop Grumman \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Northrop Grumman \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "RTX \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "RTX \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "RTX \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "RTX \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "RTX \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "RTX \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Honeywell \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Honeywell \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Honeywell \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Honeywell \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Honeywell \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Honeywell \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Lockheed Martin \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Lockheed Martin \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Lockheed Martin \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Lockheed Martin \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Lockheed Martin \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Lockheed Martin \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "GE Aviation \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "GE Aviation \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "GE Aviation \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "GE Aviation \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "GE Aviation \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "GE Aviation \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Astronics \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Astronics \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Astronics \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Astronics \u2014 Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Astronics \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Astronics \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "General Dynamics \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "General Dynamics \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "General Dynamics \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "General Dynamics \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "General Dynamics \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "General Dynamics \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "HII \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "HII \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "HII \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "HII \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "HII \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "HII \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "BAE Systems \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "BAE Systems \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "BAE Systems \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "BAE Systems \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "BAE Systems \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "BAE Systems \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "L3Harris \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "L3Harris \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "L3Harris \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "L3Harris \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "L3Harris \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "L3Harris \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Austal \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Austal \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Austal \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Austal \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Austal \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Austal \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Vision Marine Technologies \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Vision Marine Technologies \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Vision Marine Technologies \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Vision Marine Technologies \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Vision Marine Technologies \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Vision Marine Technologies \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Kirby Corporation \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Kirby Corporation \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Kirby Corporation \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Kirby Corporation \u2014 Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Kirby Corporation \u2014 Share of Sub-Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Kirby Corporation \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Dow Jones Industrial Average": {
+      "category": "Benchmark Index",
+      "freq": "D",
+      "sub_industry": null
+    },
+    "NASDAQ Composite": {
+      "category": "Benchmark Index",
+      "freq": "D",
+      "sub_industry": null
+    },
+    "Aviation Avg \u2014 Price (USD)": {
+      "category": "Stock Price (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Aviation Avg \u2014 P/B": {
+      "category": "P/B Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Aviation Avg \u2014 P/E": {
+      "category": "P/E Ratio (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Aviation \u2014 Total Market Cap": {
+      "category": "Market Cap (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Aviation \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Aviation)",
+      "freq": "D",
+      "sub_industry": "Aviation"
+    },
+    "Shipbuilding Avg \u2014 Price (USD)": {
+      "category": "Stock Price (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Shipbuilding Avg \u2014 P/B": {
+      "category": "P/B Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Shipbuilding Avg \u2014 P/E": {
+      "category": "P/E Ratio (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Shipbuilding \u2014 Total Market Cap": {
+      "category": "Market Cap (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Shipbuilding \u2014 Share of Industry Market Cap": {
+      "category": "Market Cap Share (Shipbuilding)",
+      "freq": "D",
+      "sub_industry": "Shipbuilding"
+    },
+    "Industry Avg \u2014 Price (USD)": {
+      "category": "Stock Price (Industry)",
+      "freq": "D",
+      "sub_industry": null
+    },
+    "Industry Avg \u2014 P/B": {
+      "category": "P/B Ratio (Industry)",
+      "freq": "D",
+      "sub_industry": null
+    },
+    "Industry Avg \u2014 P/E": {
+      "category": "P/E Ratio (Industry)",
+      "freq": "D",
+      "sub_industry": null
+    },
+    "Industry \u2014 Total Market Cap": {
+      "category": "Market Cap (Industry)",
+      "freq": "D",
+      "sub_industry": null
+    },
+    "New Orders: Computers and Electronic Products (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "New Orders: Other Electronic Component Manufacturing (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Value of Shipments: Computers and Electronic Products (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "New Orders: Machinery (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "New Orders: Defense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Total Inventories: Defense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Value of Shipments: Defense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "New Orders: Defense Capital Goods (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Unfilled Orders: Defense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "New Orders: Nondefense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Value of Shipments: Nondefense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Unfilled Orders: Nondefense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Total Inventories: Nondefense Aircraft and Parts (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Value of Shipments: Industrial Machinery Manufacturing (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "Value of Shipments: Defense Capital Goods (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "New Orders: Ships and Boats (SA) (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "Unfilled Orders: Ships and Boats (NSA) (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "Value of Shipments: Ships and Boats (NSA) (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "Employees: Ship and Boat Building (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "Ship and Boat Building Production Capacity compared to 2017 (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "Unfilled Orders: Ships and Boats (SA) (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "New Orders: Primary Metals (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    },
+    "New Orders: Machinery (Shipbuilding)": {
+      "category": "Macro (FRED) - Shipbuilding",
+      "freq": "M",
+      "sub_industry": "Shipbuilding"
+    }
+  }
+}
