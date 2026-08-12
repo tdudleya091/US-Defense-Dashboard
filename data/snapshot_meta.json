@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-08-12T21:50+00:00",
+  "built_at": "2026-08-12T21:59+00:00",
   "series": {
     "Boeing \u2014 Price (USD)": {
       "category": "Stock Price (Aviation)",
@@ -594,6 +594,11 @@
     "Total Inventories: Nondefense Aircraft and Parts (Aviation)": {
       "category": "Macro (FRED) - Aviation",
       "freq": "M",
+      "sub_industry": "Aviation"
+    },
+    "Employment for Manufacturing: Aerospace Product and Parts Manufacturing (NAICS 3364) in the United States (Aviation)": {
+      "category": "Macro (FRED) - Aviation",
+      "freq": "A",
       "sub_industry": "Aviation"
     },
     "Value of Shipments: Industrial Machinery Manufacturing (Shipbuilding)": {

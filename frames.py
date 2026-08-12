@@ -20,7 +20,9 @@ import macro as M
 FRED_FREQ = {label: "M" for label in M.ALL_FRED_SERIES}
 # ship_boat_building_production (IPG3366S) and a couple of employment series
 # are monthly too, so the blanket "M" default above covers everything --
-# nothing here is quarterly or daily.
+# except aerospace_employment (IPUEN3364W200000000), which FRED only
+# publishes annually.
+FRED_FREQ["aerospace_employment"] = "A"
 
 
 def _strip_tz(series):

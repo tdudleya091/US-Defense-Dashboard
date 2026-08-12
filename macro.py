@@ -58,6 +58,9 @@ AVIATION_FRED_SERIES = {
     "nondefense_aircraft_parts_shipments":    ("ANAPVS", "Mil. of $", "Value of Shipments: Nondefense Aircraft and Parts"),
     "nondefense_aircraft_parts_unfilled":     ("ANAPUO", "Mil. of $", "Unfilled Orders: Nondefense Aircraft and Parts"),
     "nondefense_aircraft_parts_inventories":  ("ANAPTI", "Mil. of $", "Total Inventories: Nondefense Aircraft and Parts"),
+    # annual (not monthly like the rest of this dict) -- see frames.FRED_FREQ override
+    "aerospace_employment": ("IPUEN3364W200000000", "Thous. of Jobs",
+                              "Employment for Manufacturing: Aerospace Product and Parts Manufacturing (NAICS 3364) in the United States"),
 }
 
 SHIPBUILDING_FRED_SERIES = {
