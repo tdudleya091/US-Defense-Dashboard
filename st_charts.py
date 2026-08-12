@@ -21,12 +21,28 @@ import altair as alt
 import streamlit as st
 
 
+def _safe_field_name(s):
+    """
+    Strip characters that break Vega-Lite's 'field:Type' shorthand parser
+    when a raw label is used as a DataFrame column name / Series index for
+    st.line_chart/st.bar_chart. Most FRED series titles are "Category:
+    Subcategory" (e.g. "New Orders: Ships and Boats"), and Streamlit's
+    native chart elements build Vega-Lite shorthand internally from column
+    names -- a colon in that name gets misread as the start of a type code
+    (":Q"/":N"/etc.), raising a ValueError. Only used for chart rendering;
+    the original label (with colon) is still shown in "Underlying data"
+    tables and everywhere else, since st.dataframe doesn't use shorthand
+    encoding and colons there are harmless.
+    """
+    return s.replace(":", " -") if isinstance(s, str) else s
+
+
 def time_series_chart(df):
     """Multi-series line chart from a wide DataFrame (columns = series, index = date)."""
     if df is None or df.empty:
         st.warning("No data available for the selected series.")
         return
-    st.line_chart(df)
+    st.line_chart(df.rename(columns=_safe_field_name))
 
 
 def format_dollar(v):
@@ -46,6 +62,7 @@ def bar_chart(series, y_axis_label="Value"):
     if series is None or series.empty:
         st.warning("No data available.")
         return
+    series = series.rename(index=_safe_field_name)
     st.bar_chart(series, y_label=y_axis_label, horizontal=True)
 
 
