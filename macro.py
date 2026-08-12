@@ -44,38 +44,40 @@ def _client():
 
 
 # label -> (FRED series ID, y-axis unit, chart title)
+# Units below follow "patch v3.md" exactly -- each parenthetical in that
+# checklist is the intended y-axis label for that variable's graph.
 AVIATION_FRED_SERIES = {
-    "new_computer_orders":                ("A34SNO", "Mil. of $", "New Orders: Computers and Electronic Products"),
-    "new_electronics_orders":             ("A34HNO", "Mil. of $", "New Orders: Other Electronic Component Manufacturing"),
-    "computer_electronics_shipments":     ("A34SVS", "Mil. of $", "Value of Shipments: Computers and Electronic Products"),
-    "new_machinery_orders":               ("A33SNO", "Mil. of $", "New Orders: Machinery"),
-    "defense_aircraft_parts_orders":      ("ADAPNO", "Mil. of $", "New Orders: Defense Aircraft and Parts"),
-    "defense_aircraft_parts_inventories": ("ADAPTI", "Mil. of $", "Total Inventories: Defense Aircraft and Parts"),
-    "defense_aircraft_parts_shipments":   ("ADAPVS", "Mil. of $", "Value of Shipments: Defense Aircraft and Parts"),
-    "defense_capital_orders":             ("ADEFNO", "Mil. of $", "New Orders: Defense Capital Goods"),
-    "defense_aircraft_parts_unfilled":    ("ADAPUO", "Mil. of $", "Unfilled Orders: Defense Aircraft and Parts"),
-    "nondefense_aircraft_parts_orders":       ("ANAPNO", "Mil. of $", "New Orders: Nondefense Aircraft and Parts"),
-    "nondefense_aircraft_parts_shipments":    ("ANAPVS", "Mil. of $", "Value of Shipments: Nondefense Aircraft and Parts"),
-    "nondefense_aircraft_parts_unfilled":     ("ANAPUO", "Mil. of $", "Unfilled Orders: Nondefense Aircraft and Parts"),
-    "nondefense_aircraft_parts_inventories":  ("ANAPTI", "Mil. of $", "Total Inventories: Nondefense Aircraft and Parts"),
+    "new_computer_orders":                ("A34SNO", "Millions of USD (Seasonally Adjusted)", "New Orders: Computers and Electronic Products"),
+    "new_electronics_orders":             ("A34HNO", "Millions of USD", "New Orders: Other Electronic Component Manufacturing"),
+    "computer_electronics_shipments":     ("A34SVS", "Millions of USD", "Value of Shipments: Computers and Electronic Products"),
+    "new_machinery_orders":               ("A33SNO", "Millions of USD", "New Orders: Machinery"),
+    "defense_aircraft_parts_orders":      ("ADAPNO", "Millions of USD", "New Orders: Defense Aircraft and Parts"),
+    "defense_aircraft_parts_inventories": ("ADAPTI", "Millions of USD", "Total Inventories: Defense Aircraft and Parts"),
+    "defense_aircraft_parts_shipments":   ("ADAPVS", "Millions of USD", "Value of Shipments: Defense Aircraft and Parts"),
+    "defense_capital_orders":             ("ADEFNO", "Millions of USD", "New Orders: Defense Capital Goods"),
+    "defense_aircraft_parts_unfilled":    ("ADAPUO", "Millions of USD", "Unfilled Orders: Defense Aircraft and Parts"),
+    "nondefense_aircraft_parts_orders":       ("ANAPNO", "Millions of USD", "New Orders: Nondefense Aircraft and Parts"),
+    "nondefense_aircraft_parts_shipments":    ("ANAPVS", "Millions of USD", "Value of Shipments: Nondefense Aircraft and Parts"),
+    "nondefense_aircraft_parts_unfilled":     ("ANAPUO", "Millions of USD", "Unfilled Orders: Nondefense Aircraft and Parts"),
+    "nondefense_aircraft_parts_inventories":  ("ANAPTI", "Millions of USD", "Total Inventories: Nondefense Aircraft and Parts"),
     # annual (not monthly like the rest of this dict) -- see frames.FRED_FREQ override
     "aerospace_employment": ("IPUEN3364W200000000", "Thous. of Jobs",
                               "Employment for Manufacturing: Aerospace Product and Parts Manufacturing (NAICS 3364) in the United States"),
 }
 
 SHIPBUILDING_FRED_SERIES = {
-    "industrial_machinery_shipments": ("A33EVS", "Mil. of $", "Value of Shipments: Industrial Machinery Manufacturing"),
-    "defense_capital_goods_shipments": ("ADEFVS", "Mil. of $", "Value of Shipments: Defense Capital Goods"),
-    "ship_new_orders":                 ("A36ZNO", "Mil. of $", "New Orders: Ships and Boats (SA)"),
-    "ships_boats_unfilled_orders_nsa": ("U36ZUO", "Mil. of $", "Unfilled Orders: Ships and Boats (NSA)"),
-    "ships_boats_shipments_nsa":       ("U36ZVS", "Mil. of $", "Value of Shipments: Ships and Boats (NSA)"),
-    "ship_boat_building_employees":    ("CES3133660001", "Thous. of Persons", "Employees: Ship and Boat Building"),
+    "industrial_machinery_shipments": ("A33EVS", "Millions of USD (Monthly)", "Value of Shipments: Industrial Machinery Manufacturing"),
+    "defense_capital_goods_shipments": ("ADEFVS", "Millions of USD (Monthly, Seasonally Adjusted)", "Value of Shipments: Defense Capital Goods"),
+    "ship_new_orders":                 ("A36ZNO", "Millions of USD (Seasonally Adjusted)", "New Orders: Ships and Boats (SA)"),
+    "ships_boats_unfilled_orders_nsa": ("U36ZUO", "Millions of USD (Not Seasonally Adjusted)", "Unfilled Orders: Ships and Boats (NSA)"),
+    "ships_boats_shipments_nsa":       ("U36ZVS", "Millions of USD (Not Seasonally Adjusted)", "Value of Shipments: Ships and Boats (NSA)"),
+    "ship_boat_building_employees":    ("CES3133660001", "Thousands of People", "Employees: Ship and Boat Building"),
     # explicit label per checklist: "Label this as Ship and Boat building
     # Production Capacity compared to 2017"
     "ship_boat_building_production":   ("IPG3366S", "Index 2017=100", "Ship and Boat Building Production Capacity compared to 2017"),
-    "ships_boats_unfilled_orders_sa":  ("A36ZUO", "Mil. of $", "Unfilled Orders: Ships and Boats (SA)"),
+    "ships_boats_unfilled_orders_sa":  ("A36ZUO", "Millions of USD (Seasonally Adjusted)", "Unfilled Orders: Ships and Boats (SA)"),
     "metal_new_orders":                ("A31SNO", "Mil. of $", "New Orders: Primary Metals"),
-    "machinery_new_orders":            ("A33SNO", "Mil. of $", "New Orders: Machinery"),
+    "machinery_new_orders":            ("A33SNO", "Millions of USD", "New Orders: Machinery"),
 }
 
 ALL_FRED_SERIES = {**AVIATION_FRED_SERIES, **SHIPBUILDING_FRED_SERIES}

@@ -282,11 +282,25 @@ def main():
             C.plot_regression(f"{name} vs {fred_title}", result)
 
     # --- one example multiple regression per sub-industry: sub-industry avg
-    # price ~ all of that sub-industry's FRED factors ---
-    print("\n--- Running multiple regressions (sub-industry avg price ~ FRED factors) ---")
+    # price ~ all of that sub-industry's MONTHLY FRED factors. Annual
+    # series (e.g. aerospace_employment) are excluded here: this regression
+    # inner-joins every predictor onto one date index, so a single annual
+    # series drags the whole combined fit down to ~1 usable row/year --
+    # e.g. Aviation's n went from 198 to 16 (barely above the "n >=
+    # predictors + 2" floor) the moment aerospace_employment joined the
+    # dict, with R² collapsing into a near-meaningless overfit at that
+    # sample size. The annual series is still fully available individually
+    # (standalone chart above, per-company linear regression, and the
+    # Streamlit multiple-regression tab where the user picks variables and
+    # gets an explicit "insufficient data" warning instead of a silent
+    # overfit).
+    print("\n--- Running multiple regressions (sub-industry avg price ~ monthly FRED factors) ---")
     for sub in SUB_INDUSTRIES:
         allowed = M.AVIATION_FRED_SERIES if sub == "Aviation" else M.SHIPBUILDING_FRED_SERIES
-        x_dict = {title: fred_data[label] for label, (_sid, _unit, title) in allowed.items() if fred_data.get(label) is not None}
+        x_dict = {
+            title: fred_data[label] for label, (_sid, _unit, title) in allowed.items()
+            if fred_data.get(label) is not None and F.FRED_FREQ.get(label, "M") == "M"
+        }
         y_series = sub_industry_avg[sub]["price"]
         if y_series is None or not x_dict:
             print(f"[SKIP] {sub} multiple regression: missing data")
