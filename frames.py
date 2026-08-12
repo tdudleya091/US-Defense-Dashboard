@@ -58,11 +58,11 @@ def build_catalog(company_data, index_data, sub_industry_avg, industry_avg, fred
         _add(f"{name} — Price (USD)", record.get("close_usd"), f"Stock Price ({sub})", sub_industry=sub)
         _add(f"{name} — P/B", record.get("pb"), f"P/B Ratio ({sub})", sub_industry=sub)
         _add(f"{name} — P/E", record.get("pe"), f"P/E Ratio ({sub})", sub_industry=sub)
-        _add(f"{name} — Market Cap", record.get("market_cap"), f"Market Cap ({sub})", sub_industry=sub)
-        _add(f"{name} — Share of Sub-Industry Market Cap", record.get("share_of_sub_industry"),
-             f"Market Cap Share ({sub})", sub_industry=sub)
-        _add(f"{name} — Share of Industry Market Cap", record.get("share_of_industry"),
-             f"Market Cap Share ({sub})", sub_industry=sub)
+        _add(f"{name} — Market Cap ($)", record.get("market_cap"), f"Market Cap ({sub})", sub_industry=sub)
+        _add(f"{name} — % of Sub-Industry Market Cap", record.get("share_of_sub_industry"),
+             f"Market Cap % ({sub})", sub_industry=sub)
+        _add(f"{name} — % of Industry Market Cap", record.get("share_of_industry"),
+             f"Market Cap % ({sub})", sub_industry=sub)
 
     # --- benchmark indices ---
     for idx_name, info in index_data.items():
@@ -73,15 +73,15 @@ def build_catalog(company_data, index_data, sub_industry_avg, industry_avg, fred
         _add(f"{sub} Avg — Price (USD)", metrics.get("price"), f"Stock Price ({sub})", sub_industry=sub)
         _add(f"{sub} Avg — P/B", metrics.get("pb"), f"P/B Ratio ({sub})", sub_industry=sub)
         _add(f"{sub} Avg — P/E", metrics.get("pe"), f"P/E Ratio ({sub})", sub_industry=sub)
-        _add(f"{sub} — Total Market Cap", metrics.get("market_cap"), f"Market Cap ({sub})", sub_industry=sub)
-        _add(f"{sub} — Share of Industry Market Cap", metrics.get("share_of_industry"),
-             f"Market Cap Share ({sub})", sub_industry=sub)
+        _add(f"{sub} — Total Market Cap ($)", metrics.get("market_cap"), f"Market Cap ({sub})", sub_industry=sub)
+        _add(f"{sub} — % of Industry Market Cap", metrics.get("share_of_industry"),
+             f"Market Cap % ({sub})", sub_industry=sub)
 
     # --- combined industry average (both sub-industries) ---
     _add("Industry Avg — Price (USD)", industry_avg.get("price"), "Stock Price (Industry)")
     _add("Industry Avg — P/B", industry_avg.get("pb"), "P/B Ratio (Industry)")
     _add("Industry Avg — P/E", industry_avg.get("pe"), "P/E Ratio (Industry)")
-    _add("Industry — Total Market Cap", industry_avg.get("market_cap"), "Market Cap (Industry)")
+    _add("Industry — Total Market Cap ($)", industry_avg.get("market_cap"), "Market Cap (Industry)")
 
     # --- FRED macro series, tagged with the sub-industry that's allowed to use them ---
     # A couple of series (e.g. "New Orders: Machinery" / A33SNO) are listed

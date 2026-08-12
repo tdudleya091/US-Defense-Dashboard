@@ -149,37 +149,45 @@ with tab_ts:
                 st.dataframe(df, width="stretch")
 
 # --------------------------------------------------------------------------
-# Tab 2: Market-Cap Share -- bar or pie, for both a sub-industry's companies
-# and the two sub-industries' share of the combined industry.
+# Tab 2: Market-Cap Share -- percent-of-market-cap OR total dollar value,
+# each as bar or pie, for both a sub-industry's companies and the two
+# sub-industries' share of the combined industry.
 # --------------------------------------------------------------------------
 with tab_share:
-    st.subheader("Market-cap share (latest available value)")
-    col1, col2 = st.columns([2, 1])
+    st.subheader("Market cap: percent share or total dollar value (latest available)")
+    col1, col2, col3 = st.columns([2, 1, 1])
     with col1:
         sub_choice = st.radio("Sub-industry", SUB_INDUSTRIES, horizontal=True)
     with col2:
+        metric_choice = st.radio("Metric", ["% of Market Cap", "Total Value ($)"], horizontal=True, key="share_metric")
+    with col3:
         chart_type = st.radio("Chart type", ["Bar", "Pie"], horizontal=True, key="share_chart_type")
+
+    is_percent = metric_choice == "% of Market Cap"
+    company_label_suffix = "% of Sub-Industry Market Cap" if is_percent else "Market Cap ($)"
+    sub_label_suffix = "% of Industry Market Cap" if is_percent else "Total Market Cap ($)"
 
     share_labels, share_values = [], []
     for name in T.ALL_COMPANIES:
         if T.SUB_INDUSTRY_MAP.get(name) != sub_choice:
             continue
-        label = f"{name} — Share of Sub-Industry Market Cap"
+        label = f"{name} — {company_label_suffix}"
         entry = catalog.get(label)
         if entry is not None and not entry["series"].empty:
             share_labels.append(name)
             share_values.append(entry["series"].dropna().iloc[-1])
 
-    st.markdown(f"#### {sub_choice}: Share of Sub-Industry Market Cap")
+    st.markdown(f"#### {sub_choice}: {'% of Sub-Industry Market Cap' if is_percent else 'Market Cap by Company ($)'}")
     if chart_type == "Bar":
-        SC.bar_chart(pd.Series(share_values, index=share_labels), y_axis_label="Share of Market Cap (%)")
+        SC.bar_chart(pd.Series(share_values, index=share_labels),
+                     y_axis_label="% of Market Cap" if is_percent else "Market Cap ($)")
     else:
-        SC.pie_chart(share_labels, share_values)
+        SC.pie_chart(share_labels, share_values, display_fn=None if is_percent else SC.format_dollar)
 
     st.markdown("#### Sub-industry share of combined defense-industry market cap")
     ind_labels, ind_values = [], []
     for sub in SUB_INDUSTRIES:
-        label = f"{sub} — Share of Industry Market Cap"
+        label = f"{sub} — {sub_label_suffix}"
         entry = catalog.get(label)
         if entry is not None and not entry["series"].empty:
             ind_labels.append(sub)
@@ -187,9 +195,10 @@ with tab_share:
 
     chart_type_industry = st.radio("Chart type", ["Bar", "Pie"], horizontal=True, key="share_chart_type_industry")
     if chart_type_industry == "Bar":
-        SC.bar_chart(pd.Series(ind_values, index=ind_labels), y_axis_label="Share of Market Cap (%)")
+        SC.bar_chart(pd.Series(ind_values, index=ind_labels),
+                     y_axis_label="% of Market Cap" if is_percent else "Total Market Cap ($)")
     else:
-        SC.pie_chart(ind_labels, ind_values)
+        SC.pie_chart(ind_labels, ind_values, display_fn=None if is_percent else SC.format_dollar)
 
 # --------------------------------------------------------------------------
 # Tab 3: Linear Regression -- Y is always a company/sub-industry/industry

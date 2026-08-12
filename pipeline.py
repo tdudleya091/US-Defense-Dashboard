@@ -209,33 +209,55 @@ def main():
                 filename_stem=f"{sub}_{key}_comparison",
             )
 
-    # --- market-cap share bar charts ---
+    # --- market-cap share charts: percent (bar + pie) AND total dollar value (bar + pie) ---
     print("\n--- Generating market-cap share charts ---")
     for sub in SUB_INDUSTRIES:
         names = [n for n in T.ALL_COMPANIES if T.SUB_INDUSTRY_MAP.get(n) == sub and n in company_data]
-        labels, values = [], []
+        pct_labels, pct_values = [], []
+        value_labels, value_values = [], []
         for n in names:
             share = company_data[n].get("share_of_sub_industry")
             if share is not None and not share.empty:
-                labels.append(n)
-                values.append(share.dropna().iloc[-1])
-        C.plot_market_share_bar(labels, values, title=f"{sub}: Share of Sub-Industry Market Cap (latest)",
-                                 filename_stem=f"{sub}_share_of_subindustry")
-        C.plot_market_share_pie(labels, values, title=f"{sub}: Share of Sub-Industry Market Cap (latest)",
-                                 filename_stem=f"{sub}_share_of_subindustry")
+                pct_labels.append(n)
+                pct_values.append(share.dropna().iloc[-1])
+            mcap = company_data[n].get("market_cap")
+            if mcap is not None and not mcap.dropna().empty:
+                value_labels.append(n)
+                value_values.append(mcap.dropna().iloc[-1])
 
-    industry_labels, industry_values = [], []
+        C.plot_market_share_bar(pct_labels, pct_values, title=f"{sub}: % of Sub-Industry Market Cap (latest)",
+                                 filename_stem=f"{sub}_share_of_subindustry")
+        C.plot_market_share_pie(pct_labels, pct_values, title=f"{sub}: % of Sub-Industry Market Cap (latest)",
+                                 filename_stem=f"{sub}_share_of_subindustry")
+        C.plot_market_value_bar(value_labels, value_values, title=f"{sub}: Total Market Cap by Company (latest)",
+                                 filename_stem=f"{sub}_market_cap")
+        C.plot_market_value_pie(value_labels, value_values, title=f"{sub}: Total Market Cap by Company (latest)",
+                                 filename_stem=f"{sub}_market_cap")
+
+    industry_pct_labels, industry_pct_values = [], []
+    industry_value_labels, industry_value_values = [], []
     for sub in SUB_INDUSTRIES:
         share = sub_industry_avg[sub].get("share_of_industry")
         if share is not None and not share.empty:
-            industry_labels.append(sub)
-            industry_values.append(share.dropna().iloc[-1])
-    C.plot_market_share_bar(industry_labels, industry_values,
-                             title="Sub-Industry Share of Combined Defense-Industry Market Cap (latest)",
+            industry_pct_labels.append(sub)
+            industry_pct_values.append(share.dropna().iloc[-1])
+        mcap = sub_industry_avg[sub].get("market_cap")
+        if mcap is not None and not mcap.dropna().empty:
+            industry_value_labels.append(sub)
+            industry_value_values.append(mcap.dropna().iloc[-1])
+
+    C.plot_market_share_bar(industry_pct_labels, industry_pct_values,
+                             title="Sub-Industry % of Combined Defense-Industry Market Cap (latest)",
                              filename_stem="industry_subindustry_shares")
-    C.plot_market_share_pie(industry_labels, industry_values,
-                             title="Sub-Industry Share of Combined Defense-Industry Market Cap (latest)",
+    C.plot_market_share_pie(industry_pct_labels, industry_pct_values,
+                             title="Sub-Industry % of Combined Defense-Industry Market Cap (latest)",
                              filename_stem="industry_subindustry_shares")
+    C.plot_market_value_bar(industry_value_labels, industry_value_values,
+                             title="Sub-Industry Total Market Cap (latest)",
+                             filename_stem="industry_subindustry_market_cap_total")
+    C.plot_market_value_pie(industry_value_labels, industry_value_values,
+                             title="Sub-Industry Total Market Cap (latest)",
+                             filename_stem="industry_subindustry_market_cap_total")
 
     # --- standalone FRED macro series charts ---
     print("\n--- Generating standalone FRED macro series charts ---")

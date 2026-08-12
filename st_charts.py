@@ -29,6 +29,18 @@ def time_series_chart(df):
     st.line_chart(df)
 
 
+def format_dollar(v):
+    """Format a raw USD amount as $X.XXB / $X.XXM / $X.XXK."""
+    abs_v = abs(v)
+    if abs_v >= 1e9:
+        return f"${v / 1e9:.2f}B"
+    if abs_v >= 1e6:
+        return f"${v / 1e6:.2f}M"
+    if abs_v >= 1e3:
+        return f"${v / 1e3:.2f}K"
+    return f"${v:.2f}"
+
+
 def bar_chart(series, y_axis_label="Value"):
     """Bar chart from a pd.Series (index = category labels, values = bar heights)."""
     if series is None or series.empty:
@@ -37,20 +49,32 @@ def bar_chart(series, y_axis_label="Value"):
     st.bar_chart(series, y_label=y_axis_label, horizontal=True)
 
 
-def pie_chart(labels, values, title=None):
-    """Pie chart via Altair's arc mark (Streamlit has no native st.pie_chart)."""
+def pie_chart(labels, values, title=None, display_fn=None):
+    """
+    Pie chart via Altair's arc mark (Streamlit has no native st.pie_chart).
+
+    Args:
+        display_fn (callable or None): formats a raw value for the tooltip
+            (e.g. dollar formatting for a market-cap-value pie). Defaults to
+            a plain percent-of-total display, matching the arc proportions.
+    """
     pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
     if not pairs:
         st.warning("No data available.")
         return
+    total = sum(v for _l, v in pairs)
+    if display_fn is None:
+        display_fn = lambda v: f"{v / total * 100:.1f}%" if total else "0%"
+
     df = pd.DataFrame(pairs, columns=["Label", "Value"])
+    df["Display"] = df["Value"].apply(display_fn)
     chart = (
         alt.Chart(df)
         .mark_arc(outerRadius=140)
         .encode(
             theta=alt.Theta("Value:Q", stack=True),
             color=alt.Color("Label:N", legend=alt.Legend(title=None)),
-            tooltip=["Label", alt.Tooltip("Value:Q", format=".1f")],
+            tooltip=["Label", "Display"],
         )
     )
     if title:

@@ -163,8 +163,20 @@ def plot_multiple_regression(label, result):
     _save_and_close(fig, os.path.join(OUTPUT_DIR, f"multiregression_{_safe_filename(label)}.png"))
 
 
+def _format_dollar(v):
+    """Format a raw USD amount as $X.XXB / $X.XXM / $X.XXK, for market-cap dollar labels."""
+    abs_v = abs(v)
+    if abs_v >= 1e9:
+        return f"${v / 1e9:.2f}B"
+    if abs_v >= 1e6:
+        return f"${v / 1e6:.2f}M"
+    if abs_v >= 1e3:
+        return f"${v / 1e3:.2f}K"
+    return f"${v:.2f}"
+
+
 def plot_market_share_bar(labels, values, title, filename_stem):
-    """Horizontal seaborn bar chart of market-cap shares (percent)."""
+    """Horizontal seaborn bar chart of market-cap PERCENT shares (0-100)."""
     ensure_output_dir()
     pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
     if not pairs:
@@ -175,7 +187,7 @@ def plot_market_share_bar(labels, values, title, filename_stem):
 
     fig, ax = plt.subplots(figsize=(9, max(3, 0.4 * len(bar_labels))))
     sns.barplot(x=list(bar_values), y=list(bar_labels), ax=ax, color="steelblue")
-    ax.set_xlabel("Share of Market Cap (%)")
+    ax.set_xlabel("% of Market Cap")
     ax.set_title(title)
     for i, v in enumerate(bar_values):
         ax.text(v, i, f" {v:.1f}%", va="center", fontsize=8)
@@ -185,7 +197,7 @@ def plot_market_share_bar(labels, values, title, filename_stem):
 
 
 def plot_market_share_pie(labels, values, title, filename_stem):
-    """Pie chart of market-cap shares (percent), using a seaborn color palette."""
+    """Pie chart of market-cap PERCENT shares, using a seaborn color palette."""
     ensure_output_dir()
     pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
     if not pairs:
@@ -200,3 +212,53 @@ def plot_market_share_pie(labels, values, title, filename_stem):
     plt.tight_layout()
 
     _save_and_close(fig, os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}_pie.png"))
+
+
+def plot_market_value_bar(labels, values, title, filename_stem):
+    """Horizontal seaborn bar chart of RAW DOLLAR market-cap totals (not percent)."""
+    ensure_output_dir()
+    pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
+    if not pairs:
+        print(f"[SKIP] {title}: no market-cap value data")
+        return
+    pairs.sort(key=lambda p: p[1])
+    bar_labels, bar_values = zip(*pairs)
+
+    fig, ax = plt.subplots(figsize=(9, max(3, 0.4 * len(bar_labels))))
+    sns.barplot(x=list(bar_values), y=list(bar_labels), ax=ax, color="darkorange")
+    ax.set_xlabel("Total Market Cap ($B)")
+    ax.set_title(title)
+    ax.xaxis.set_major_formatter(lambda x, _pos: f"{x / 1e9:.0f}")
+    for i, v in enumerate(bar_values):
+        ax.text(v, i, f" {_format_dollar(v)}", va="center", fontsize=8)
+    plt.tight_layout()
+
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}_value.png"))
+
+
+def plot_market_value_pie(labels, values, title, filename_stem):
+    """
+    Pie chart of RAW DOLLAR market-cap totals -- same proportions as the
+    percent pie, but slice labels show the actual dollar amount instead of
+    a bare percentage (matplotlib's autopct only ever receives the
+    percentage, so the dollar amount is recovered from it via the known
+    total of `values`).
+    """
+    ensure_output_dir()
+    pairs = [(l, v) for l, v in zip(labels, values) if v is not None]
+    if not pairs:
+        print(f"[SKIP] {title}: no market-cap value data")
+        return
+    pie_labels, pie_values = zip(*pairs)
+    total = sum(pie_values)
+
+    def _autopct(pct):
+        return _format_dollar(pct / 100 * total)
+
+    fig, ax = plt.subplots(figsize=(7, 7))
+    colors = sns.color_palette("pastel", n_colors=len(pie_labels))
+    ax.pie(pie_values, labels=pie_labels, autopct=_autopct, colors=colors, startangle=90)
+    ax.set_title(title)
+    plt.tight_layout()
+
+    _save_and_close(fig, os.path.join(OUTPUT_DIR, f"{_safe_filename(filename_stem)}_value_pie.png"))

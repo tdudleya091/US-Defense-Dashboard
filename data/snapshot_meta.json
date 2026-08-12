@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-08-11T22:41+00:00",
+  "built_at": "2026-08-12T21:50+00:00",
   "series": {
     "Boeing \u2014 Price (USD)": {
       "category": "Stock Price (Aviation)",
@@ -16,18 +16,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Boeing \u2014 Market Cap": {
+    "Boeing \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Boeing \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Boeing \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Boeing \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Boeing \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -46,18 +46,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Textron \u2014 Market Cap": {
+    "Textron \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Textron \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Textron \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Textron \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Textron \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -76,18 +76,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Northrop Grumman \u2014 Market Cap": {
+    "Northrop Grumman \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Northrop Grumman \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Northrop Grumman \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Northrop Grumman \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Northrop Grumman \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -106,18 +106,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "RTX \u2014 Market Cap": {
+    "RTX \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "RTX \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "RTX \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "RTX \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "RTX \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -136,18 +136,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Honeywell \u2014 Market Cap": {
+    "Honeywell \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Honeywell \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Honeywell \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Honeywell \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Honeywell \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -166,18 +166,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Lockheed Martin \u2014 Market Cap": {
+    "Lockheed Martin \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Lockheed Martin \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Lockheed Martin \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Lockheed Martin \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Lockheed Martin \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -196,18 +196,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "GE Aviation \u2014 Market Cap": {
+    "GE Aviation \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "GE Aviation \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "GE Aviation \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "GE Aviation \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "GE Aviation \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -226,18 +226,18 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Astronics \u2014 Market Cap": {
+    "Astronics \u2014 Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Astronics \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Astronics \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Astronics \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Astronics \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -256,18 +256,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "General Dynamics \u2014 Market Cap": {
+    "General Dynamics \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "General Dynamics \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "General Dynamics \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "General Dynamics \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "General Dynamics \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -286,18 +286,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "HII \u2014 Market Cap": {
+    "HII \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "HII \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "HII \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "HII \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "HII \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -316,18 +316,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "BAE Systems \u2014 Market Cap": {
+    "BAE Systems \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "BAE Systems \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "BAE Systems \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "BAE Systems \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "BAE Systems \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -346,18 +346,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "L3Harris \u2014 Market Cap": {
+    "L3Harris \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "L3Harris \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "L3Harris \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "L3Harris \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "L3Harris \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -376,18 +376,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Austal \u2014 Market Cap": {
+    "Austal \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Austal \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Austal \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Austal \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Austal \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -406,18 +406,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Vision Marine Technologies \u2014 Market Cap": {
+    "Vision Marine Technologies \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Vision Marine Technologies \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Vision Marine Technologies \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Vision Marine Technologies \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Vision Marine Technologies \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -436,18 +436,18 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Kirby Corporation \u2014 Market Cap": {
+    "Kirby Corporation \u2014 Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Kirby Corporation \u2014 Share of Sub-Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Kirby Corporation \u2014 % of Sub-Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Kirby Corporation \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Kirby Corporation \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -476,13 +476,13 @@
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Aviation \u2014 Total Market Cap": {
+    "Aviation \u2014 Total Market Cap ($)": {
       "category": "Market Cap (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
-    "Aviation \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Aviation)",
+    "Aviation \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Aviation)",
       "freq": "D",
       "sub_industry": "Aviation"
     },
@@ -501,13 +501,13 @@
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Shipbuilding \u2014 Total Market Cap": {
+    "Shipbuilding \u2014 Total Market Cap ($)": {
       "category": "Market Cap (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
-    "Shipbuilding \u2014 Share of Industry Market Cap": {
-      "category": "Market Cap Share (Shipbuilding)",
+    "Shipbuilding \u2014 % of Industry Market Cap": {
+      "category": "Market Cap % (Shipbuilding)",
       "freq": "D",
       "sub_industry": "Shipbuilding"
     },
@@ -526,7 +526,7 @@
       "freq": "D",
       "sub_industry": null
     },
-    "Industry \u2014 Total Market Cap": {
+    "Industry \u2014 Total Market Cap ($)": {
       "category": "Market Cap (Industry)",
       "freq": "D",
       "sub_industry": null
