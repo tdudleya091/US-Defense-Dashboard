@@ -61,7 +61,7 @@ AVIATION_FRED_SERIES = {
     "nondefense_aircraft_parts_unfilled":     ("ANAPUO", "Millions of USD", "Unfilled Orders: Nondefense Aircraft and Parts"),
     "nondefense_aircraft_parts_inventories":  ("ANAPTI", "Millions of USD", "Total Inventories: Nondefense Aircraft and Parts"),
     # annual (not monthly like the rest of this dict) -- see frames.FRED_FREQ override
-    "aerospace_employment": ("IPUEN3364W200000000", "Thous. of Jobs",
+    "aerospace_employment": ("IPUEN3364W200000000", "Thousands of Employees",
                               "Employment for Manufacturing: Aerospace Product and Parts Manufacturing (NAICS 3364) in the United States"),
 }
 
